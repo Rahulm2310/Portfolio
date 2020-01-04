@@ -7,6 +7,8 @@
   cursor: pointer;
   @include easeOut;
 
+  
+  
   .btn-line {
     width: 28px;
     height: 3px;
@@ -14,6 +16,8 @@
     background-color: set-text-color($primary-color);
     @include easeOut;
   }
+  
+  
 
   &.close {
     transform: rotate(180deg);
@@ -37,6 +41,9 @@
   }
 }
 
+
+
+
 //menu overlay
 .menu {
   position: fixed;
@@ -44,6 +51,7 @@
   width: 100%;
   opacity: 0.9;
   visibility: hidden;
+  
 
   &.show {
     visibility: visible;
@@ -61,6 +69,8 @@
     overflow: hidden;
   }
 
+  
+  
   &-nav {
     margin: 0px;
     padding: 0px;
@@ -74,6 +84,8 @@
     }
   }
 
+  
+  
   //Branding
   &-branding {
     background: $primary-color;
@@ -84,6 +96,7 @@
       transform: translate3d(0, 0, 0);
     }
 
+    
     .portrait {
       width: 250px;
       height: 250px;
@@ -92,6 +105,8 @@
       border: 3px solid $secondary-color;
     }
   }
+  
+  
 
   .nav-item {
     transform: translate3d(600px, 0, 0);
@@ -106,6 +121,8 @@
     }
   }
 
+  
+  
   .nav-link {
     display: inline-block;
     position: relative;
@@ -123,6 +140,8 @@
   }
 }
 
+
+
 //delay each element
 
 @for $x from 1 through 4 {
@@ -130,3 +149,5 @@
     transition-delay: $x * 0.1s;
   }
 }
+
+
