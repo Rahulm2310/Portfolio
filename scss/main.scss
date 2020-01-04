@@ -7,6 +7,9 @@ $bg-opacity: 0.8;
   transition: all 0.5s ease-out;
 }
 
+
+
+
 @mixin background {
   @if $show-home-image {
     &#bg-img {
@@ -28,13 +31,19 @@ $bg-opacity: 0.8;
   }
 }
 
+
+
 @import "config";
 @import "menu";
 @import "mobile";
 
+
+
 * {
   box-sizing: border-box;
 }
+
+
 
 body {
   @include background;
@@ -45,6 +54,8 @@ body {
   line-height: 1.5;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
+
 
 h1,
 h2,
@@ -63,10 +74,15 @@ h3 {
   }
 }
 
+
+
+
 a {
   color: white;
   text-decoration: none;
 }
+
+
 
 header {
   position: fixed;
@@ -74,9 +90,13 @@ header {
   width: 100%;
 }
 
+
+
 .text-secondary {
   color: $secondary-color;
 }
+
+
 
 main {
   padding: 4rem;
@@ -103,6 +123,8 @@ main {
     }
   }
 }
+
+
 
 .about-info {
   display: grid;
