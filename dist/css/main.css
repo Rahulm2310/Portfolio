@@ -3,6 +3,51 @@
   margin: 0px;
   padding: 0px;
 }
+
+a:hover {
+  text-decoration: none;
+}
+
+/* scroll bar progress bar */
+#progress-bar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 0;
+  background: linear-gradient(to bottom, rgb(15, 76, 138), dodgerblue);
+  box-shadow: 0px 0px 10px dodgerblue;
+}
+
+#progress-bar:before,
+#progress-bar:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgb(15, 76, 138), dodgerblue);
+  filter: blur(10px);
+}
+
+#progress-bar:after {
+  filter: blur(40px);
+}
+
+#scroll-path {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
 .menu-btn {
   position: absolute;
   z-index: 3;
@@ -90,6 +135,7 @@
   border-radius: 50%;
   border: 3px solid dodgerblue;
   box-shadow: 0px 0px 40px dodgerblue;
+  animation: shadow 4s infinite ease-in-out;
 }
 
 .menu .nav-item {
@@ -141,32 +187,32 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 }
 
 body {
   background: rgb(32, 32, 32);
   color: #fff;
-  height: 100%;
+  height: 100vh;
   margin: 0;
   line-height: 1.5;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-body#bg-img {
-  background: url(../img/background.jpg);
-  background-attachment: fixed;
-  background-size: cover;
-}
-body#bg-img:after {
-  content: "";
+/* body#bg-img {
+  /* background: url(../img/background.jpg); */
+/* background-attachment: fixed; */
+/* background-size: cover; */
+/* }  */
+/* body#bg-img:after { */
+/* content: '';
   position: absolute;
   top: 0;
   right: 0;
   width: 100%;
   height: 100%;
   z-index: -1;
-  background: rgba(26, 25, 25, 0.9);
-}
+  background: rgba(26, 25, 25, 0.9); */
+/* } */
 
 h1,
 h2,
@@ -183,8 +229,8 @@ h3.lg-heading {
 h1.sm-heading,
 h2.sm-heading,
 h3.sm-heading {
-  margin: 2rem;
-  padding: 0.2rem 1rem;
+  margin: 1rem 0px;
+  padding: 0.2rem 0rem;
   /* background: rgba(76, 76, 76, 0.5); */
   animation: fadeInUp 1s ease-in;
 }
@@ -201,7 +247,17 @@ header {
 }
 
 .text-secondary {
-  color: dodgerblue;
+  color: dodgerblue !important;
+}
+
+h4.text-secondary {
+  text-transform: uppercase;
+}
+
+h4.sm-heading {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  color: #ccc;
 }
 
 main {
@@ -220,18 +276,23 @@ main .icons a:hover {
 }
 main#home {
   overflow: hidden;
+  position: unset !important;
 }
 main#home h1 {
   margin-top: 20vh;
+}
+
+main#home canvas {
+  height: 100vh !important;
 }
 
 .about-info {
   display: grid;
   grid-gap: 30px;
   grid-template-areas:
-    "bioimage bio bio"
-    "tools tools tools"
-    "experience experience experience";
+    'bioimage bio bio'
+    'tools tools tools'
+    'experience experience experience';
   grid-template-columns: repeat(3, 1fr);
 }
 
@@ -245,7 +306,12 @@ main#home h1 {
 
 .bio {
   grid-area: bio;
-  font-size: 1.5rem;
+  font-size: 1.3em;
+}
+
+.bio p {
+  margin-top: 10px;
+  color: #ddd;
 }
 
 .tools {
@@ -259,13 +325,13 @@ main#home h1 {
   color: dodgerblue;
 }
 
-.tools .skills {
+.skills {
   display: flex;
   flex-wrap: wrap;
   margin: 20px auto;
 }
 
-.tools .skills p {
+.skills p {
   display: inline-block;
   padding: 10px;
   margin: 10px;
@@ -288,10 +354,20 @@ main#home h1 {
   margin: 20px auto;
 }
 
+.subtitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ddd;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
 .job {
-  background: #515151;
+  background: #111;
   padding: 1.2rem;
   border-bottom: dodgerblue 5px solid;
+  /* box-shadow: 0px 0px 15px #515151; */
   margin: 20px 0px;
   margin-right: 20px;
 }
@@ -301,21 +377,91 @@ main#home h1 {
 
 .job p {
   margin: 15px auto;
+  color: #ddd;
 }
 
 .projects {
+  margin-top: 30px;
   display: grid;
-  grid-gap: 0.7rem;
+  grid-gap: 1rem;
   grid-template-columns: repeat(3, 1fr);
 }
 .projects img {
   width: 100%;
+  height: 200px;
   border: 3px solid white;
 }
-.projects img:hover {
+
+.projects .item img:hover {
   opacity: 0.5;
   border-color: dodgerblue;
   transition: all 0.5s ease-out;
+}
+
+.projects .btn-light {
+  font-weight: bold;
+}
+
+.projects .btn-light:hover,
+.modal-footer .btn-light:hover {
+  box-shadow: 0px 0px 10px dodgerblue;
+  color: white;
+  font-weight: bold;
+  transition: 0.3s all ease-in-out;
+  letter-spacing: 0.3rem;
+}
+
+.project-info .project-image:hover {
+  opacity: 1;
+  border-color: unset;
+  transition: unset;
+}
+
+.project-image {
+  width: 50%;
+  border: 2px solid white;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+}
+
+.project-head {
+  display: flex;
+  align-items: flex-start;
+}
+
+.project-image {
+  margin-right: 20px;
+}
+
+.project-info h6 {
+  text-transform: uppercase;
+  margin-top: 30px;
+}
+
+.project-desc {
+  color: #ccc;
+  width: 50%;
+}
+
+.open-source .box {
+  padding: 1.2rem !important;
+}
+
+.open-source .left {
+  width: 30%;
+}
+
+.open-source img {
+  width: 100%;
+  height: 200px;
+}
+
+.open-source h4 {
+  margin-top: 15px;
+  text-align: center;
 }
 
 .boxes {
@@ -326,26 +472,28 @@ main#home h1 {
   align-items: center;
   margin-top: 1rem;
 }
-.boxes div {
-  font-size: 2rem;
+.boxes .box {
+  font-size: 1.5rem;
   border: 3px solid white;
   padding: 1.2rem 2rem;
   margin-bottom: 3rem;
   transition: all 0.2s ease-out;
-  width: 100%;
+  width: 60%;
+  align-self: flex-start;
+  background: #111;
 }
-.boxes div:hover {
-  background: dodgerblue;
+.boxes .box:hover {
+  transition: 0.3s all ease-in-out;
   border: 3px solid dodgerblue;
   box-shadow: 0px 0px 20px dodgerblue;
   color: #fff;
 }
 
-.boxes div span {
+.boxes .box span {
   display: block;
 }
 
-.boxes div:hover span {
+.boxes .box:hover span {
   color: #000;
 }
 
@@ -381,6 +529,20 @@ main#home h1 {
   color: #fff;
   height: 60px;
   box-shadow: 0px 0px 10px dodgerblue;
+  border-top: 1.5px solid dodgerblue;
+}
+
+.modal-content {
+  background-color: #292929 !important;
+}
+
+.modal-dialog {
+  max-width: 60% !important;
+}
+
+.modal-header {
+  background-color: dodgerblue;
+  text-transform: uppercase;
 }
 
 @media screen and (min-width: 1171px) {
@@ -396,13 +558,26 @@ main#home h1 {
 }
 
 @media screen and (max-width: 768px) {
+  main#home {
+    padding: 0;
+  }
   main {
     align-items: center;
     text-align: center;
+    padding: 4rem;
   }
   main .lg-heading {
     line-height: 1;
     margin-bottom: 1rem;
+  }
+
+  h1.sm-heading,
+  h2.sm-heading,
+  h3.sm-heading {
+    margin: 1rem 0px;
+    padding: 0.2rem 1rem;
+    /* background: rgba(76, 76, 76, 0.5); */
+    animation: fadeInUp 1s ease-in;
   }
   ul.menu-nav,
   div .menu-branding {
@@ -425,27 +600,55 @@ main#home h1 {
     transform: translate3d(100%, 0, 0);
     position: relative;
     padding: 10px;
+    background-color: dodgerblue;
   }
   .menu-branding .portrait {
-    background: url("../img/portrait_small.jpg");
+    background: url('../img/portrait_small.jpg');
     width: 150px;
     height: 150px;
     margin: 0px auto;
+    border: 3px solid white;
+    box-shadow: 0px 0px 1000px black !important;
   }
   .about-info {
     grid-template-areas:
-      "bioimage"
-      "bio"
-      "tools"
-      "tools"
-      "tools"
-      "experience"
-      "experience"
-      "experience";
+      'bioimage'
+      'bio'
+      'tools'
+      'tools'
+      'tools'
+      'experience'
+      'experience'
+      'experience';
     grid-template-columns: 1fr;
+  }
+
+  h2.sm-heading {
+    margin-bottom: 20px;
+  }
+
+  .subtitle {
+    flex-direction: column;
   }
   .projects {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .modal-dialog {
+    max-width: 90% !important;
+    margin: 0 auto;
+  }
+
+  .project-head {
+    flex-direction: column;
+  }
+  .project-image {
+    margin: 0;
+    margin-bottom: 20px;
+    height: 270px;
+    width: 100%;
+  }
+  .boxes .box {
+    width: 100%;
   }
 }
 
@@ -487,5 +690,17 @@ main#home h1 {
     opacity: 1;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes shadow {
+  0% {
+    box-shadow: 0px 0px 5px dodgerblue;
+  }
+  50% {
+    box-shadow: 0px 0px 100px dodgerblue;
+  }
+  100% {
+    box-shadow: 0px 0px 5px dodgerblue;
   }
 }

@@ -8,6 +8,13 @@
 
     <link
       rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
       integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
       crossorigin="anonymous"
@@ -50,74 +57,98 @@
     </header>
 
     <main id="about">
+      <div id="progress-bar"></div>
+      <div id="scroll-path"></div>
       <h1 class="lg-heading">About <span class="text-secondary">Me</span></h1>
-      <h2 class="sm-heading">Let me tell you about myself...</h2>
+      <h4 class="sm-heading">Let me tell you about myself...</h4>
 
       <div class="about-info">
         <img src="img/portrait1.jpg" alt="Rahul Mohata" class="bio-image" />
 
         <div class="bio">
-          <h3 class="text-secondary">BIO</h3>
+          <h4 class="text-secondary">BIO</h4>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit quasi
-            illum quod doloremque impedit, dicta doloribus minima iusto? Neque
-            mollitia totam voluptatibus cum saepe nulla pariatur praesentium
-            sed, temporibus impedit!Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Ipsam architecto provident, temporibus saepe
-            corporis
+            My name is Rahul Mohata and I am a full-stack Web and Mobile
+            Application Developer, currently living in New Delhi, India. I am a
+            sophomore persuing Bachelor of Technology in Information Technology
+            from MAIT, GGSIPU. I am fond of developing websites and mobile
+            applications. I am both driven and self-motivated, and I am
+            constantly experimenting with new technologies and techniques
           </p>
         </div>
 
         <div class="tools">
-          <h3 class="text-secondary">
+          <h4 class="text-secondary">
             Tools & Technologies
-          </h3>
+          </h4>
           <div class="skills">
             <p>HTML</p>
             <p>CSS</p>
-            <p>PHP</p>
             <p>Javascript</p>
-            <p>JQuery</p>
-            <p>Bootstrap</p>
             <p>NodeJs</p>
             <p>Express</p>
             <p>React</p>
             <p>React Native</p>
             <p>Redux</p>
+            <p>PHP</p>
             <p>MongoDB</p>
             <p>Firebase</p>
+            <p>Flutter</p>
+            <p>Styled Components</p>
+            <p>Sass</p>
+            <p>JQuery</p>
+            <p>Bootstrap</p>
+            <p>Materialize</p>
+            <p>Tailwind</p>
             <p>Wordpress</p>
           </div>
         </div>
 
         <div class="experience">
-          <h3 class="text-secondary">
+          <h4 class="text-secondary">
             Past Experiences
-          </h3>
+          </h4>
           <div class="jobs">
             <div class="job job-1">
-              <h3>PaprClip Technologies Ltd.</h3>
-              <h6>Junior Developer</h6>
+              <h5>PaprClip Technologies Ltd.</h5>
+              <div class="subtitle">
+                <h6>Junior Developer</h6>
+                <h6>May 2020 - June 2020</h6>
+              </div>
+
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-                architecto provident, temporibus saepe corporis, vitae labore
-                veniam praesentium porro nesciunt laudantium quod dolorum,
-                dolorem necessitatibus cumque. Quos obcaecati quia consequatur?
+                PaprClip provides a hassle-free digital solution for paperless
+                billing & data analytics to retail merchants. Their product has
+                been awarded by the University of Texas & the US State. My day
+                to day responsibilities included working with React Native on
+                the front end to improve and iterate Android and iOS
+                applications, Writing code for the app logic as well as the
+                business logic using reducers, actions, and frameworks, Diagnose
+                and perform bug fixes along with performance bottlenecks, Create
+                and maintain documentation for the project, Drive the
+                discussions and decisions of technical topics related to the
+                team.
               </p>
             </div>
 
             <div class="job job-2">
-              <h3>Designer ABC</h3>
-              <h6>Front End Developer</h6>
+              <h5>Heatil Social</h5>
+              <div class="subtitle">
+                <h6>Front End Developer</h6>
+                <h6>March 2020 - May 2020</h6>
+              </div>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-                architecto provident, temporibus saepe corporis, vitae labore
-                veniam praesentium porro nesciunt laudantium quod dolorum,
-                dolorem necessitatibus cumque. Quos obcaecati quia consequatur?
+                Heatil Social is a fitness club management app and a social
+                network for fitness lovers.It is available on web as well as
+                mobile platforms. My day to day responsibilities included
+                working with NextJs along with React Native Web to create
+                various screens for the web app, Creating reusable react native
+                components, Improving the old UI and performing bug fixes,
+                Maintaining proper documentation for the project
               </p>
             </div>
 
-            <div class="job job-3">
+            <!-- <div class="job job-3">
               <h3>WebWorks</h3>
               <h6>Graphic Designer</h6>
               <p>
@@ -126,14 +157,34 @@
                 veniam praesentium porro nesciunt laudantium quod dolorum,
                 dolorem necessitatibus cumque. Quos obcaecati quia consequatur?
               </p>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
     </main>
 
-    <footer id="main-footer">Copyright &copy; 2020</footer>
+    <footer id="main-footer">
+      Made with 💙 by Rahul Mohata | Copyright &copy; 2020
+    </footer>
 
+    <script src="./js/three.r95.min.js"></script>
+    <script src="./js/vanta.net.min.js"></script>
+    <script>
+      VANTA.NET({
+        el: '#about',
+        mouseControls: true,
+        touchControls: true,
+        minHeight: 200.0,
+        minWidth: 200.0,
+        scale: 1.0,
+        scaleMobile: 1.0,
+        color: 0x3e96c2,
+        backgroundColor: 0x0,
+        points: 14.0,
+        maxDistance: 26.0,
+        spacing: 16.0,
+      });
+    </script>
     <script
       src="https://code.jquery.com/jquery-3.4.1.js"
       integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="

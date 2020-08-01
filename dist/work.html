@@ -9,6 +9,13 @@
 
     <link
       rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
       integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
       crossorigin="anonymous"
@@ -51,87 +58,191 @@
     </header>
 
     <main id="work">
+      <div id="progress-bar"></div>
+      <div id="scroll-path"></div>
       <h1 class="lg-heading">My <span class="text-secondary">Work</span></h1>
-      <h2 class="sm-heading">Check out some of my projects</h2>
+      <h4 class="sm-heading">Check out some of my projects</h4>
+      <!-- modal -->
+      <div
+            class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel"></h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer"></div>
+              </div>
+            </div>
+          </div>
 
       <div class="projects">
         <div class="item">
-          <a href="#">
-            <img src="img/projects/project1.jpg" alt="project" />
+          <a href="https://yourmait.herokuapp.com">
+            <img src="img/projects/yourMait.JPG" alt="project" />
           </a>
+          <!-- <div class="project-info"> -->
+          <a
+            href="#"
+            class="btn-light"
+            data-toggle="modal"
+            data-target="#exampleModal"
+            >YourMAIT</a
+          >
+          <!-- <button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#exampleModal"
+          >
+            Launch demo modal
+          </button> -->
 
-          <a href="#" class="btn-light">YourMAIT</a>
+          <!-- <div class="info-text">
+              <p>
+                YourMAIT is a one stop web app for MAIT students. Students can  
+              </p>
+            </div> -->
+          <!-- </div> -->
 
-          <a href="#" class="btn-dark">
+          <!-- <a href="#" class="btn-dark">
             <i class="fab fa-github"></i> Github
-          </a>
+          </a> -->
         </div>
 
         <div class="item">
-          <a href="#">
-            <img src="img/projects/project2.jpg" alt="project" />
+          <a href="https://estylish.herokuapp.com/">
+            <img src="img/projects/estylish.JPG" alt="project" />
           </a>
 
-          <a href="https://estylish.herokuapp.com/" class="btn-light"
-            >estylish</a
+          <a
+            href=""
+            class="btn-light"
+            data-toggle="modal"
+            data-target="#exampleModal"
+            >Estylish</a
           >
 
-          <a href="https://github.com/Rahulm2310/estylish" class="btn-dark">
+          <!-- <a href="https://github.com/Rahulm2310/estylish" class="btn-dark">
             <i class="fab fa-github"></i> Github
-          </a>
+          </a> -->
         </div>
 
         <div class="item">
-          <a href="#">
-            <img src="img/projects/project3.jpg" alt="project" />
+          <a href="https://linked-up-net.herokuapp.com">
+            <img src="img/projects/linkedup.JPG" alt="project" />
           </a>
 
-          <a href="https://linked-up-net.herokuapp.com" class="btn-light"
+          <a
+            href=""
+            class="btn-light"
+            data-toggle="modal"
+            data-target="#exampleModal"
             >LinkedUp</a
           >
 
-          <a href="https://github.com/Rahulm2310/LinkedUp" class="btn-dark">
+          <!-- <a href="https://github.com/Rahulm2310/LinkedUp" class="btn-dark">
             <i class="fab fa-github"></i> Github
-          </a>
+          </a> -->
         </div>
 
         <div class="item">
           <a href="https://india-fights-corona.herokuapp.com/">
-            <img src="img/projects/project4.jpg" alt="project" />
-          </a>
-
-          <a href="https://india-fights-corona.herokuapp.com/" class="btn-light"
-            >India fights Corona</a
-          >
-
-          <a href="#" class="btn-dark">
-            <i class="fab fa-github"></i> Github
-          </a>
-        </div>
-
-        <div class="item">
-          <a href="#">
-            <img src="img/projects/project5.jpg" alt="project" />
+            <img src="img/projects/corona.jpg" alt="project" />
           </a>
 
           <a
-            href="https://rahulm2310.github.io/RMDB/index.html"
+            href=""
             class="btn-light"
-            >RMDB</a
+            data-toggle="modal"
+            data-target="#exampleModal"
+            >India fights Corona</a
           >
 
-          <a href="https://github.com/Rahulm2310/RMDB" class="btn-dark">
+          <!-- <a href="#" class="btn-dark">
             <i class="fab fa-github"></i> Github
+          </a> -->
+        </div>
+
+        <div class="item">
+          <a href="https://swizzleshirts.herokuapp.com">
+            <img src="img/projects/swizzle.jpg" alt="project" />
           </a>
+
+          <a
+            href=""
+            class="btn-light"
+            data-toggle="modal"
+            data-target="#exampleModal"
+            >Swizzle</a
+          >
+
+          <!-- <a href="https://github.com/Rahulm2310/RMDB" class="btn-dark">
+            <i class="fab fa-github"></i> Github
+          </a> -->
+        </div>
+      </div>
+      <div class="boxes open-source">
+      <h4 class="text-secondary m-5">OPEN SOURCE CONTRIBUTIONS</h4>
+        <div class="box">
+          <div class="left">
+            <img src="./img/projects/processing.jpg" alt='processing-foundation'/>
+          <h4>Processing Foundation</h4>
+        </div>
+        </div>
+        <div class="box">
+          <div class="left">
+            <img src="./img/projects/joplin.jpg" alt='processing-foundation'/>
+          <h4>Joplin</h4>
+          </div>
         </div>
       </div>
     </main>
 
-    <footer id="main-footer">Copyright &copy; 2020</footer>
+    <footer id="main-footer">
+      Made with 💙 by Rahul Mohata | Copyright &copy; 2020
+    </footer>
 
+    <script src="./js/three.r95.min.js"></script>
+    <script src="./js/vanta.net.min.js"></script>
+    <script>
+      VANTA.NET({
+        el: '#work',
+        mouseControls: true,
+        touchControls: true,
+        minHeight: 200.0,
+        minWidth: 200.0,
+        scale: 1.0,
+        scaleMobile: 1.0,
+        color: 0x3e96c2,
+        backgroundColor: 0x0,
+        points: 14.0,
+        maxDistance: 26.0,
+        spacing: 16.0,
+      });
+    </script>
     <script
       src="https://code.jquery.com/jquery-3.4.1.js"
       integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
       crossorigin="anonymous"
     ></script>
 

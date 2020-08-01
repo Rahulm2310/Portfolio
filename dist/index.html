@@ -9,6 +9,12 @@
 
     <link
       rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
       integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
       crossorigin="anonymous"
@@ -16,7 +22,7 @@
     <link href="css/main.css" rel="stylesheet" />
   </head>
 
-  <body id="bg-img">
+  <body>
     <header>
       <div class="menu-btn">
         <div class="btn-line"></div>
@@ -50,18 +56,22 @@
     </header>
 
     <main id="home">
+      <div id="progress-bar"></div>
+      <div id="scroll-path"></div>
       <h1 class="lg-heading">
         Rahul <span class="text-secondary">Mohata</span>
       </h1>
 
-      <h2 class="sm-heading">Web Developer, Programmer & Designer</h2>
+      <h2 class="sm-heading">
+        Full Stack Web Developer, App Developer and Competitive Programmer
+      </h2>
 
       <div class="icons">
-        <a href="#">
+        <a href="https://www.facebook.com/rahul.mohata.2310/">
           <i class="fab fa-facebook fa-2x"></i>
         </a>
 
-        <a href="">
+        <a href="https://www.instagram.com/rahul_mohata_2310/">
           <i class="fab fa-instagram fa-2x"></i>
         </a>
 
@@ -69,20 +79,38 @@
           <i class="fab fa-github fa-2x"></i>
         </a>
 
-        <a href="">
+        <a href="https://www.linkedin.com/in/rahul-mohata-52953a172/">
           <i class="fab fa-linkedin fa-2x"></i>
         </a>
 
-        <a href="">
+        <a href="https://medium.com/coder-decoder">
           <i class="fab fa-medium fa-2x"></i>
         </a>
 
-        <a href="">
+        <!-- <a href="">
           <i class="fas fa-envelope fa-2x"></i>
-        </a>
+        </a> -->
       </div>
     </main>
 
+    <script src="./js/three.r95.min.js"></script>
+    <script src="./js/vanta.net.min.js"></script>
+    <script>
+      VANTA.NET({
+        el: '#home',
+        mouseControls: true,
+        touchControls: true,
+        minHeight: 200.0,
+        minWidth: 200.0,
+        scale: 1.0,
+        scaleMobile: 1.0,
+        color: 0x3e96c2,
+        backgroundColor: 0x0,
+        points: 14.0,
+        maxDistance: 26.0,
+        spacing: 16.0,
+      });
+    </script>
     <script
       src="https://code.jquery.com/jquery-3.5.1.js"
       integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="

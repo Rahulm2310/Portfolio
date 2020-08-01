@@ -7,6 +7,12 @@
     <title>How to Reach Me</title>
     <link
       rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
       integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
       crossorigin="anonymous"
@@ -43,22 +49,66 @@
     </header>
 
     <main id="contact">
+      <div id="progress-bar"></div>
+      <div id="scroll-path"></div>
       <h1 class="lg-heading">Contact <span class="text-secondary">Me</span></h1>
-      <h2 class="sm-heading">This is how you can reach me</h2>
+      <h4 class="sm-heading">This is how you can reach me</h4>
       <div class="boxes">
-        <div><span class="text-secondary">Email: </span> rahul@gmail.com</div>
+        <div class="box"><span class="text-secondary">Email: </span> rahulmohata2310@gmail.com</div>
 
-        <div><span class="text-secondary">Phone: </span> 9876543210</div>
+        <div class="box"><span class="text-secondary">Phone: </span> 9990301804</div>
 
-        <div>
-          <span class="text-secondary">Address: </span> 540 Garden Drive
-          Hempstead, NY 11550
+        <div class="box"> 
+          <span class="text-secondary">Connect with me: </span>
+          <div class="icons">
+            <a href="https://www.facebook.com/rahul.mohata.2310/">
+              <i class="fab fa-facebook fa-2x"></i>
+            </a>
+    
+            <a href="https://www.instagram.com/rahul_mohata_2310/">
+              <i class="fab fa-instagram fa-2x"></i>
+            </a>
+    
+            <a href="https://github.com/Rahulm2310">
+              <i class="fab fa-github fa-2x"></i>
+            </a>
+    
+            <a href="https://www.linkedin.com/in/rahul-mohata-52953a172/">
+              <i class="fab fa-linkedin fa-2x"></i>
+            </a>
+    
+            <a href="https://medium.com/coder-decoder">
+              <i class="fab fa-medium fa-2x"></i>
+            </a>
+            </div>
+
         </div>
+
       </div>
     </main>
 
-    <footer id="main-footer">Copyright &copy; 2020</footer>
+    <footer id="main-footer">
+      Made with 💙 by Rahul Mohata | Copyright &copy; 2020
+    </footer>
 
+    <script src="./js/three.r95.min.js"></script>
+    <script src="./js/vanta.net.min.js"></script>
+    <script>
+      VANTA.NET({
+        el: '#contact',
+        mouseControls: true,
+        touchControls: true,
+        minHeight: 200.0,
+        minWidth: 200.0,
+        scale: 1.0,
+        scaleMobile: 1.0,
+        color: 0x3e96c2,
+        backgroundColor: 0x0,
+        points: 14.0,
+        maxDistance: 26.0,
+        spacing: 16.0,
+      });
+    </script>
     <script
       src="https://code.jquery.com/jquery-3.4.1.js"
       integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
