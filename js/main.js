@@ -114,7 +114,7 @@ const projects = {
     title: 'India fights Corona',
     description:
       'India fights Corona is a Covid-19 tracker application to track current situation of novel coronavirus in India. It shows state wise as well as district wise data.It also has a news section and a helplines section with covid-19 helplines for all states.',
-    image: 'img/projects/corona.jpg',
+    image: 'img/projects/corona.JPG',
     url: 'https://india-fights-corona.herokuapp.com',
     technologies: [
       'HTML',
@@ -132,7 +132,7 @@ const projects = {
     title: 'Swizzle',
     description:
       "Swizzle is a men's shirt manufacturing company based in New Delhi, India. They are a best quality shirt manufacturer providing one stop solution for all bulk needs.",
-    image: 'img/projects/swizzle.jpg',
+    image: 'img/projects/swizzle.JPG',
     url: 'https://swizzleshirts.herokuapp.com',
     technologies: [
       'HTML',
