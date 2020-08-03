@@ -3,6 +3,20 @@ const menuBtn = $('.menu-btn');
 const menu = $('.menu');
 const menuNav = $('.menu-nav');
 const menuBranding = $('.menu-branding');
+const months = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+];
 
 const navItems = document.querySelectorAll('.nav-item');
 
@@ -170,3 +184,352 @@ window.onscroll = function () {
   let progress = (window.pageYOffset / totalHeight) * 100;
   $('#progress-bar').css('height', progress + '%');
 };
+
+//fetching github details
+let dataFetched = false;
+let repos = [
+  {
+    repo: 'processing/p5.js-website',
+    title: 'Processing Foundation',
+    image: './img/projects/processing.jpg',
+    openPrs: [],
+    mergedPrs: [],
+    openIssues: [],
+    closedIssues: [],
+  },
+  {
+    repo: 'laurent22/joplin',
+    title: 'Joplin',
+    image: './img/projects/joplin.jpg',
+    openPrs: [],
+    mergedPrs: [],
+    openIssues: [],
+    closedIssues: [],
+  },
+];
+
+//fetching open pull requests
+// const fetchingGithubData = async (repo, isIssue) => {
+//   let openPrs = await fetch(
+//     `https://api.github.com/search/issues?q=author:rahulm2310+repo:${repo}+type:${
+//       isIssue ? 'issue' : 'pr'
+//     }+is:open+sort:author-date-asc`
+//   );
+//   let mergedPrs = await fetch(
+//     `https://api.github.com/search/issues?q=author:rahulm2310+repo:${repo}+type:${
+//       isIssue ? 'issue' : 'pr'
+//     }+is:${isIssue ? 'closed' : 'merged'}+sort:author-date-asc`
+//   );
+//   openPrs = await openPrs.json();
+//   mergedPrs = await mergedPrs.json();
+
+//   console.log(openPrs);
+//   let issues =
+//     openPrs.items.length > 0
+//       ? openPrs.items.map(
+//           (pr) => `<div class="issue-item">
+//   <i class="fab fa-facebook open"></i>
+//   <div class="content">
+//     <h6><a href='${pr.url}'>${pr.title}</a></h6>
+//     <p>this is a subtitle</p>
+//   </div>
+// </div>`
+//         )
+//       : [`<p>No pull requests found</p>`];
+//   console.log(issues);
+//   $('.issue-list').html(issues.join(''));
+// };
+
+// fetchingGithubData();
+if (location.pathname.substring(6) == 'work.html') {
+  repos.forEach(async (r) => {
+    // await fetchingGithubData(r.repo, true);
+    // await fetchingGithubData(r.repo, false);
+    let openPrs = await fetch(
+      `https://api.github.com/search/issues?q=author:rahulm2310+repo:${r.repo}+type:pr+is:open+sort:author-date-asc`
+    );
+    let mergedPrs = await fetch(
+      `https://api.github.com/search/issues?q=author:rahulm2310+repo:${r.repo}+type:pr+is:merged+sort:author-date-asc`
+    );
+    let openIssues = await fetch(
+      `https://api.github.com/search/issues?q=author:rahulm2310+repo:${r.repo}+type:issue 
+      +is:open+sort:author-date-asc`
+    );
+    let closedIssues = await fetch(
+      `https://api.github.com/search/issues?q=author:rahulm2310+repo:${r.repo}+type:issue
+      +is:closed+sort:author-date-asc`
+    );
+    openPrs = await openPrs.json();
+    mergedPrs = await mergedPrs.json();
+    openIssues = await openIssues.json();
+    closedIssues = await closedIssues.json();
+    r.openPrs = openPrs.items;
+    r.mergedPrs = mergedPrs.items;
+    r.openIssues = openIssues.items;
+    r.closedIssues = closedIssues.items;
+    // console.log(r.openPrs);
+    // console.log(r.mergedPrs);
+    // dataFetched = true;
+    updateUi();
+  });
+}
+
+function updateUi() {
+  let openSource = repos.map((r) => {
+    return `<div class="box">
+  <div class="left">
+    <img
+      src="${r.image}"
+      alt="project-image"
+    />
+    <h5>${r.title}</h5>
+  </div>
+  <div class="right">
+    <div class="issues">
+      <div class="header">
+        <h5>Issues Reported</h5>
+        <div class="tabs">
+        <h6 class="issue-closed tab active">Closed</h6>
+          <h6 class="issue-open tab ">Open</h6>
+        </div>
+      </div>
+      <div class="issue-list">
+      ${
+        r.closedIssues.length > 0
+          ? r.closedIssues
+              .map(
+                (pr) => `<div class="issue-item merged-item">
+  <i class="far fa-check-circle merged-icon"></i>
+  <div class="content">
+    <h6><a href='${pr.url}'>#${pr.number} : ${pr.title}</a></h6>
+    <small>${
+      new Date(pr.closed_at).getDate() +
+      ' ' +
+      months[new Date(pr.closed_at).getMonth()] +
+      ',' +
+      new Date(pr.closed_at).getFullYear()
+    }</small>
+  </div>
+</div>`
+              )
+              .join('')
+          : `<p>No closed issues found</p>`
+      }
+      </div>
+    </div>
+    <div class="issues">
+    <div class="header">
+      <h5>Pull Requests</h5>
+      <div class="tabs">
+      <h6 class="pr-merged tab active">Merged</h6>
+          <h6 class="pr-open tab">Open</h6>
+        </div>
+        </div>
+      <div class="issue-list">
+      ${
+        r.mergedPrs.length > 0
+          ? r.mergedPrs
+              .map(
+                (pr) => `<div class="issue-item merged-item">
+                <div class='icon-wrapper open-icon'>
+                <img src='./img/merge-icon.png'/>
+              </div>
+  <div class="content">
+    <h6><a href='${pr.url}'>#${pr.number} : ${pr.title}</a></h6>
+    <small>${
+      new Date(pr.closed_at).getDate() +
+      ' ' +
+      months[new Date(pr.closed_at).getMonth()] +
+      ',' +
+      new Date(pr.closed_at).getFullYear()
+    }</small>
+  </div>
+</div>`
+              )
+              .join('')
+          : `<p>No merged pull requests found</p>`
+      }
+      </div>
+    </div>
+  </div>
+</div>`;
+  });
+
+  $('.open-source-list').html(openSource.join(''));
+}
+
+$(document).on('click', '.issue-open', function () {
+  $(this).addClass('active');
+  $(this).parent().children('.issue-closed').removeClass('active');
+  let index = repos.find(
+    (r) =>
+      r.title ==
+      $(this)
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .children()
+        .children('h5')
+        .text()
+  );
+  let list =
+    index.openIssues.length > 0
+      ? index.openIssues.map(
+          (pr) => `<div class="issue-item open-item">
+  <i class="fas fa-exclamation-circle open-icon"></i>
+  <div class="content">
+    <h6><a href='${pr.url}'>#${pr.number} : ${pr.title}</a></h6>
+    <small>${
+      new Date(pr.created_at).getDate() +
+      ' ' +
+      months[new Date(pr.created_at).getMonth()] +
+      ',' +
+      new Date(pr.created_at).getFullYear()
+    }</small>
+  </div>
+</div>`
+        )
+      : [`<p>No open issues found</p>`];
+  $(this)
+    .parent()
+    .parent()
+    .parent()
+    .children('.issue-list')
+    .html(list.join(''));
+});
+
+$(document).on('click', '.pr-open', function () {
+  $(this).addClass('active');
+  $(this).parent().children('.pr-merged').removeClass('active');
+  console.log('clickeddd');
+  let index = repos.find(
+    (r) =>
+      r.title ==
+      $(this)
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .children()
+        .children('h5')
+        .text()
+  );
+  let list =
+    index.openPrs.length > 0
+      ? index.openPrs.map(
+          (pr) => `<div class="issue-item open-item">
+          <div class='icon-wrapper open-icon'>
+          <img src='./img/open-icon.png'/>
+        </div>
+  <div class="content">
+    <h6><a href='${pr.url}'>#${pr.number} : ${pr.title}</a></h6>
+    <small>${
+      new Date(pr.created_at).getDate() +
+      ' ' +
+      months[new Date(pr.created_at).getMonth()] +
+      ',' +
+      new Date(pr.created_at).getFullYear()
+    }</small>
+  </div>
+</div>`
+        )
+      : [`<p>No open pull requests found</p>`];
+  // console.log($(this).parent().parent().parent().children('.issue-list'));
+  $(this)
+    .parent()
+    .parent()
+    .parent()
+    .children('.issue-list')
+    .html(list.join(''));
+});
+
+$(document).on('click', '.issue-closed', function () {
+  $(this).addClass('active');
+  $(this).parent().children('.issue-open').removeClass('active');
+  let index = repos.find(
+    (r) =>
+      r.title ==
+      $(this)
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .children()
+        .children('h5')
+        .text()
+  );
+  let list =
+    index.closedIssues.length > 0
+      ? index.closedIssues.map(
+          (pr) => `<div class="issue-item merged-item">
+  <i class="fas fa-check-circle merged-icon"></i>
+  <div class="content">
+    <h6><a href='${pr.url}'>#${pr.number} : ${pr.title}</a></h6>
+    <small>${
+      new Date(pr.closed_at).getDate() +
+      ' ' +
+      months[new Date(pr.closed_at).getMonth()] +
+      ',' +
+      new Date(pr.closed_at).getFullYear()
+    }</small>
+  </div>
+</div>`
+        )
+      : [`<p>No closed issues found</p>`];
+  $(this)
+    .parent()
+    .parent()
+    .parent()
+    .children('.issue-list')
+    .html(list.join(''));
+});
+
+$(document).on('click', '.pr-merged', function () {
+  $(this).addClass('active');
+  $(this).parent().children('.pr-open').removeClass('active');
+  $();
+  let index = repos.find(
+    (r) =>
+      r.title ==
+      $(this)
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .children()
+        .children('h5')
+        .text()
+  );
+  let list =
+    index.mergedPrs.length > 0
+      ? index.mergedPrs.map(
+          (pr) => `<div class="issue-item merged-item">
+          <div class='icon-wrapper'>
+          <img src='./img/merge-icon.png'/>
+        </div>
+          <div class="content">
+    <h6><a href='${pr.url}'>#${pr.number} : ${pr.title}</a></h6>
+    <small>${
+      new Date(pr.closed_at).getDate() +
+      ' ' +
+      months[new Date(pr.closed_at).getMonth()] +
+      ',' +
+      new Date(pr.closed_at).getFullYear()
+    }</small>
+  </div>
+</div>`
+        )
+      : [`<p>No merged pull requests found</p>`];
+  // console.log($(this).parent().parent().parent().children('.issue-list'));
+  $(this)
+    .parent()
+    .parent()
+    .parent()
+    .children('.issue-list')
+    .html(list.join(''));
+});
