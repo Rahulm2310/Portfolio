@@ -151,9 +151,7 @@ const projects = {
 //show Project Details Modal
 $('.item .btn-light').on('click', function () {
   const name = $(this).text();
-  // console.log(name);
   const project = projects[name];
-  // console.log(project);
   //setting up modal
   $('body .modal-title').text(project.title);
   $('.modal-body').html(`
