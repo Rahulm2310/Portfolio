@@ -735,7 +735,7 @@ main#home canvas {
   main {
     align-items: center;
     text-align: center;
-    padding: 4rem;
+    padding: 4rem 2rem;
   }
   main .lg-heading {
     line-height: 1;
