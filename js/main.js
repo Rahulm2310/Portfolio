@@ -70,6 +70,10 @@ const projects = {
       'JQuery',
       'Axios',
       'Sass',
+      'AJAX',
+      'REST',
+      'Socket.io',
+      'Draft.js'
     ],
   },
   Estylish: {
@@ -85,10 +89,13 @@ const projects = {
       'ReactJs',
       'ExpressJs',
       'Firebase',
+      'Cloud Firestore',
       'Redux',
       'Reselect',
       'JQuery',
       'Styled Components',
+      'Stripe',
+      'GraphQL'
     ],
   },
   LinkedUp: {
@@ -101,13 +108,15 @@ const projects = {
       'HTML',
       'CSS',
       'NodeJs',
-      'MongoDB',
+      'MongoDB Atlas',
       'ExpressJs',
       'ReactJs',
       'Redux',
       'Axios',
       'Sass',
       'JWT',
+      'AJAX',
+      'REST'
     ],
   },
   'India fights Corona': {
@@ -119,31 +128,35 @@ const projects = {
     technologies: [
       'HTML',
       'CSS',
-      'JS',
+      'JavaScript',
       'NodeJs',
       'ExpressJs',
       'Bootstrap',
       'Axios',
       'JQuery',
       'API',
+      'REST',
+      'AJAX'
     ],
   },
   Swizzle: {
     title: 'Swizzle',
     description:
-      "Swizzle is a men's shirt manufacturing company based in New Delhi, India. They are a best quality shirt manufacturer providing one stop solution for all bulk needs.",
+      "Swizzle is a men's shirt manufacturing company based in New Delhi, India.The website is a showcase for the company's products and work processes.",
     image: 'img/projects/swizzle.JPG',
     url: 'https://swizzleshirts.herokuapp.com',
     technologies: [
       'HTML',
       'CSS',
-      'JS',
+      'JavaScript',
       'NodeJs',
       'ExpressJs',
       'MongoDB',
       'EJS',
       'JQuery',
       'Axios',
+      'REST',
+      'Bootstrap'
     ],
   },
 };
@@ -239,7 +252,11 @@ let repos = [
 // };
 
 // fetchingGithubData();
-if (location.pathname.substring(6) == 'work.html') {
+// $('.work-btn').on('click',function(){
+  
+// })
+// console.log(location.pathname);
+if (location.pathname.substring(10) == '/work.html') {
   repos.forEach(async (r) => {
     // await fetchingGithubData(r.repo, true);
     // await fetchingGithubData(r.repo, false);
@@ -272,6 +289,8 @@ if (location.pathname.substring(6) == 'work.html') {
   });
 }
 
+const GITHUB_URL = 'https://github.com';
+
 function updateUi() {
   let openSource = repos.map((r) => {
     return `<div class="box">
@@ -299,7 +318,7 @@ function updateUi() {
                 (pr) => `<div class="issue-item merged-item">
   <i class="far fa-check-circle merged-icon"></i>
   <div class="content">
-    <h6><a href='${pr.url}'>#${pr.number} : ${pr.title}</a></h6>
+    <h6><a href='${GITHUB_URL}${pr.url.substring(28)}'>#${pr.number} : ${pr.title}</a></h6>
     <small>${
       new Date(pr.closed_at).getDate() +
       ' ' +
@@ -333,7 +352,7 @@ function updateUi() {
                 <img src='./img/merge-icon.png'/>
               </div>
   <div class="content">
-    <h6><a href='${pr.url}'>#${pr.number} : ${pr.title}</a></h6>
+    <h6><a href='${GITHUB_URL}${pr.url.substring(28)}'>#${pr.number} : ${pr.title}</a></h6>
     <small>${
       new Date(pr.closed_at).getDate() +
       ' ' +
@@ -378,7 +397,7 @@ $(document).on('click', '.issue-open', function () {
           (pr) => `<div class="issue-item open-item">
   <i class="fas fa-exclamation-circle open-icon"></i>
   <div class="content">
-    <h6><a href='${pr.url}'>#${pr.number} : ${pr.title}</a></h6>
+    <h6><a href='${GITHUB_URL}${pr.url.substring(28)}'>#${pr.number} : ${pr.title}</a></h6>
     <small>${
       new Date(pr.created_at).getDate() +
       ' ' +
@@ -423,7 +442,7 @@ $(document).on('click', '.pr-open', function () {
           <img src='./img/open-icon.png'/>
         </div>
   <div class="content">
-    <h6><a href='${pr.url}'>#${pr.number} : ${pr.title}</a></h6>
+    <h6><a href='${GITHUB_URL}${pr.url.substring(28)}'>#${pr.number} : ${pr.title}</a></h6>
     <small>${
       new Date(pr.created_at).getDate() +
       ' ' +
@@ -466,7 +485,7 @@ $(document).on('click', '.issue-closed', function () {
           (pr) => `<div class="issue-item merged-item">
   <i class="fas fa-check-circle merged-icon"></i>
   <div class="content">
-    <h6><a href='${pr.url}'>#${pr.number} : ${pr.title}</a></h6>
+    <h6><a href='${GITHUB_URL}${pr.url.substring(28)}'>#${pr.number} : ${pr.title}</a></h6>
     <small>${
       new Date(pr.closed_at).getDate() +
       ' ' +
@@ -511,7 +530,7 @@ $(document).on('click', '.pr-merged', function () {
           <img src='./img/merge-icon.png'/>
         </div>
           <div class="content">
-    <h6><a href='${pr.url}'>#${pr.number} : ${pr.title}</a></h6>
+    <h6><a href='${GITHUB_URL}${pr.url.substring(28)}'>#${pr.number} : ${pr.title}</a></h6>
     <small>${
       new Date(pr.closed_at).getDate() +
       ' ' +
