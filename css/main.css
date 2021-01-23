@@ -84,7 +84,7 @@ a:hover {
   position: fixed;
   top: 0;
   width: 100%;
-  opacity: 0.9;
+  opacity: 0.95;
   visibility: hidden;
 }
 
@@ -131,11 +131,12 @@ a:hover {
 .menu-branding .portrait {
   width: 250px;
   height: 250px;
-  background: url(../img/portrait1.jpg);
+  background: url(../img/portrait.jpg);
   border-radius: 50%;
   border: 3px solid dodgerblue;
   box-shadow: 0px 0px 40px dodgerblue;
   animation: shadow 4s infinite ease-in-out;
+  background-size: cover;
 }
 
 .menu .nav-item {
@@ -181,6 +182,10 @@ a:hover {
 
 .nav-item:nth-child(4) {
   transition-delay: 0.4s;
+}
+
+.nav-item:nth-child(5) {
+  transition-delay: 0.5s;
 }
 
 main {
@@ -291,17 +296,16 @@ main#home canvas {
 }
 
 .about-info {
-  display: grid;
-  grid-gap: 30px;
-  grid-template-areas:
-    'bioimage bio bio'
-    'tools tools tools'
-    'experience experience experience';
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  align-items: center;
+  background: black;
+  border-radius: 130px;
+  border: 2px solid dodgerblue;
 }
 
 .bio-image {
-  grid-area: bioimage;
+  width: 250px;
+  height: 250px;
   margin: auto;
   border-radius: 50%;
   border: 3px solid dodgerblue;
@@ -310,9 +314,10 @@ main#home canvas {
 }
 
 .bio {
-  grid-area: bio;
+  margin-left: 30px;
   font-size: 1.3em;
   animation: fadeInUp 1s ease-in !important;
+  padding: 20px;
 }
 
 .bio p {
@@ -321,8 +326,7 @@ main#home canvas {
 }
 
 .tools {
-  grid-area: tools;
-  margin: 40px auto;
+  margin: 100px auto;
   animation: fadeInUp 1s ease-in !important;
 }
 
@@ -350,6 +354,7 @@ main#home canvas {
   color: #fff;
   box-shadow: 0px 0px 5px dodgerblue;
   border-radius: 5px;
+  background: linear-gradient(to right, black, rgb(39, 39, 39));
 }
 
 .experience {
@@ -380,6 +385,7 @@ main#home canvas {
   /* box-shadow: 0px 0px 15px #515151; */
   margin: 20px 0px;
   margin-right: 20px;
+  width: 100%;
 }
 .job h3 {
   color: #fff;
@@ -457,15 +463,31 @@ main#home canvas {
 }
 
 .open-source .box {
-  padding: 1.2rem !important;
+  padding: 0px !important;
   width: 100% !important;
   display: flex;
-  height: 300px;
+  flex-direction: column;
+  /* height: 300px; */
+  border: none !important;
   overflow: hidden;
+  margin-top: 30px;
+  background: none !important;
 }
 
 .open-source .box:hover {
   box-shadow: none !important;
+}
+
+.box .issue-box,
+.box .pr-box {
+  border: 2px solid white;
+  padding: 10px;
+  border-radius: 20px;
+  height: 500px;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 30px;
+  background: #000;
 }
 
 /* .open-source .box:hover{
@@ -509,7 +531,14 @@ main#home canvas {
 
 .open-source h4.text-secondary {
   margin: 30px 0px;
-  text-align: left;
+  text-align: center;
+  font-size: 26px;
+  background: dodgerblue;
+  color: white !important;
+  padding: 5px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px dodgerblue;
+  margin-top: 150px;
 }
 
 .open-source .left h5 {
@@ -522,6 +551,7 @@ main#home canvas {
 .open-source .header {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .open-source .header h5 {
@@ -553,6 +583,7 @@ main#home canvas {
 .open-source .issue-list {
   overflow: auto;
   height: 100%;
+  padding-bottom: 30px;
 }
 
 .issue-item {
@@ -571,7 +602,7 @@ main#home canvas {
   height: 30px; */
 }
 
-.issue-item img {
+.issue-item .icon-wrapper img {
   width: 30px;
   height: 30px;
   border: none;
@@ -626,6 +657,21 @@ main#home canvas {
 
 .issue-item p {
   font-size: 14px;
+}
+
+.issue-item .content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.issue-item .content-right img {
+  width: 60px;
+  height: 60px;
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 0px 0px 20px black;
 }
 
 .boxes {
@@ -716,6 +762,70 @@ main#home canvas {
   text-align: center;
 }
 
+.orgs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.org {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s all ease-in;
+  /* width: 200px; */
+  /* height: 240px; */
+  margin-right: 20px;
+  /* overflow: hidden; */
+  position: relative;
+}
+
+.org img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid white;
+  top: 70px;
+  position: relative;
+  background: black;
+}
+
+.org-title {
+  width: 200px;
+  height: 150px;
+  border-radius: 20px;
+  border: 3px solid white;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background: linear-gradient(to right, #0f0f0f, #565757);
+}
+
+.org p {
+  font-size: 20px;
+  text-decoration: none;
+  margin: 0px;
+  /* padding: 10px; */
+  text-align: center;
+  width: 100%;
+  /* background-color: white; */
+  color: white;
+  /* position: absolute; */
+  /* bottom: 0px; */
+}
+
+.org:hover {
+  /* background: linear-gradient(to right, #0f0f0f, #565757); */
+  color: white;
+}
+
+/* .org:hover > p {
+  color: white;
+} */
+
 @media screen and (min-width: 1171px) {
   .projects {
     grid-template-columns: repeat(4, 1fr);
@@ -774,24 +884,16 @@ main#home canvas {
     background-color: dodgerblue;
   }
   .menu-branding .portrait {
-    background: url('../img/portrait_small.jpg');
+    background: url('../img/portrait.jpg');
     width: 150px;
     height: 150px;
     margin: 0px auto;
     border: 3px solid white;
     box-shadow: 0px 0px 1000px black !important;
+    background-size: cover;
   }
   .about-info {
-    grid-template-areas:
-      'bioimage'
-      'bio'
-      'tools'
-      'tools'
-      'tools'
-      'experience'
-      'experience'
-      'experience';
-    grid-template-columns: 1fr;
+    flex-direction: column;
   }
 
   h2.sm-heading {
@@ -921,11 +1023,11 @@ main#home canvas {
 }
 
 @keyframes loader {
-  0%,
+  /* 0%,
   100% {
-    transform: scale(0.9);
+    transform: scaleX(0.9);
   }
   50% {
-    transform: scale(1.1);
-  }
+    transform: scaleX(1.1);
+  } */
 }

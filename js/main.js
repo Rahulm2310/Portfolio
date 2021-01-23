@@ -54,8 +54,8 @@ const projects = {
   YourMAIT: {
     title: 'YourMAIT',
     description:
-      "YourMAIT is a one stop solution for MAIT (my college) students.It's a web app where students can notes,notices,placement details,upcoming events.There is a feed page where students can create,like,comment posts.Students can also create/join chat rooms",
-    image: 'img/projects/yourMait.jpg',
+      "YourMAIT is a one stop portal for MAIT (my college) students.It's a web app where students can notes,notices,placement details,upcoming events. Students can create,like,comment posts. They can also create/join chat rooms.",
+    image: 'img/projects/yourMait.JPG',
     url: 'https://yourmait.herokuapp.com',
     technologies: [
       'HTML',
@@ -65,7 +65,7 @@ const projects = {
       'ExpressJs',
       'MongoDB',
       'Redux',
-      'PassportJs',
+      'Firebase',
       'JWT',
       'JQuery',
       'Axios',
@@ -73,14 +73,39 @@ const projects = {
       'AJAX',
       'REST',
       'Socket.io',
-      'Draft.js'
+      'Draft.js',
+      "Puppeteer",
+      "Alan AI"
+    ],
+  },
+  Wedeo: {
+    title: 'Wedeo',
+    description:
+      "Wedeo is a web based video conferenencing application built with WebRTC and Web Sockets. Users can host or join a meeting with a meeting id & password.",
+    image: 'img/projects/wedeo.JPG',
+    url: 'https://wedeo.netlify.app',
+    technologies: [
+      'HTML',
+      'CSS',
+      'NodeJs',
+      'React.js',
+      'Next.js',
+      'Express.js',
+      'Firebase',
+      'Realtime Database',
+      'Redux',
+      'Redux-Thunk',
+      'Peer.js',
+      'Socket.io',
+      'JQuery',
+      'REST API'
     ],
   },
   Estylish: {
     title: 'Estylish',
     description:
       "Estylish is a full stack e-commerce platform based on apparels and accessories for men & women. Users can register/login, add products to their cart, process a fake payment using Stripe's payment gateway.",
-    image: 'img/projects/estylish.jpg',
+    image: 'img/projects/estylish.JPG',
     url: 'https://estylish.herokuapp.com',
     technologies: [
       'HTML',
@@ -91,11 +116,13 @@ const projects = {
       'Firebase',
       'Cloud Firestore',
       'Redux',
+      'Redux-Saga',
       'Reselect',
       'JQuery',
       'Styled Components',
       'Stripe',
-      'GraphQL'
+      'GraphQL',
+      'Jest'
     ],
   },
   LinkedUp: {
@@ -142,7 +169,7 @@ const projects = {
   Swizzle: {
     title: 'Swizzle',
     description:
-      "Swizzle is a men's shirt manufacturing company based in New Delhi, India.The website is a showcase for the company's products and work processes.",
+      "Swizzle is a men's shirt manufacturing company based in New Delhi, India.This website is a showcase for the company's products and work processes.",
     image: 'img/projects/swizzle.JPG',
     url: 'https://swizzleshirts.herokuapp.com',
     technologies: [
@@ -191,362 +218,161 @@ $('.item .btn-light').on('click', function () {
 //progress bar
 var totalHeight = document.body.scrollHeight - window.innerHeight;
 window.onscroll = function () {
-  console.log(totalHeight);
+  // console.log(totalHeight);
   let progress = (window.pageYOffset / totalHeight) * 100;
   $('#progress-bar').css('height', progress + '%');
 };
 
 //fetching github details
 let dataFetched = false;
-let repos = [
-  {
-    repo: 'processing/p5.js-website',
-    title: 'Processing Foundation',
-    image: './img/projects/processing.jpg',
-    openPrs: [],
-    mergedPrs: [],
-    openIssues: [],
-    closedIssues: [],
-  },
-  {
-    repo: 'laurent22/joplin',
-    title: 'Joplin',
-    image: './img/projects/joplin.jpg',
-    openPrs: [],
-    mergedPrs: [],
-    openIssues: [],
-    closedIssues: [],
-  },
-];
+// let repos = [
+//   {
+//     repo: 'processing/p5.js-website',
+//     title: 'Processing Foundation',
+//     image: './img/projects/processing.jpg',
+//     issues:[],
+//     prs:[]
+//   },
+//   {
+//     repo: 'laurent22/joplin',
+//     title: 'Joplin',
+//     image: './img/projects/joplin.jpg',
+//     issues:[],
+//     prs:[]
+//   },
+//     {
+//     repo: 'anitab-org/bridge-in-tech-web',
+//     title: 'AnitaB.org',
+//     image: './img/projects/anitab.png',
+//     issues:[],
+//     prs:[]
+//   },
+// ];
+console.log(location.pathname);
 
-//fetching open pull requests
-// const fetchingGithubData = async (repo, isIssue) => {
-//   let openPrs = await fetch(
-//     `https://api.github.com/search/issues?q=author:rahulm2310+repo:${repo}+type:${
-//       isIssue ? 'issue' : 'pr'
-//     }+is:open+sort:author-date-asc`
-//   );
-//   let mergedPrs = await fetch(
-//     `https://api.github.com/search/issues?q=author:rahulm2310+repo:${repo}+type:${
-//       isIssue ? 'issue' : 'pr'
-//     }+is:${isIssue ? 'closed' : 'merged'}+sort:author-date-asc`
-//   );
-//   openPrs = await openPrs.json();
-//   mergedPrs = await mergedPrs.json();
+const fetchData = async()=>{
+  let prs = await fetch(
+    `https://api.github.com/search/issues?q=author:rahulm2310+type:pr`
+  );
+  let issues = await fetch(
+    `https://api.github.com/search/issues?q=author:rahulm2310+type:issue`
+  );
 
-//   console.log(openPrs);
-//   let issues =
-//     openPrs.items.length > 0
-//       ? openPrs.items.map(
-//           (pr) => `<div class="issue-item">
-//   <i class="fab fa-facebook open"></i>
-//   <div class="content">
-//     <h6><a href='${pr.url}'>${pr.title}</a></h6>
-//     <p>this is a subtitle</p>
-//   </div>
-// </div>`
-//         )
-//       : [`<p>No pull requests found</p>`];
-//   console.log(issues);
-//   $('.issue-list').html(issues.join(''));
-// };
+  prs=await prs.json();
+  issues=await issues.json();
+  prs=prs.items;
+  issues=issues.items;
+ 
+ 
+  updateUi({issues,prs});
+}
 
-// fetchingGithubData();
-// $('.work-btn').on('click',function(){
-  
-// })
-// console.log(location.pathname);
-if (location.pathname.substring(10) == '/work.html') {
-  repos.forEach(async (r) => {
+if (location.pathname == '/work.html') {
+  fetchData();
+
+
+  // repos.forEach(async (r) => {
     // await fetchingGithubData(r.repo, true);
     // await fetchingGithubData(r.repo, false);
-    let openPrs = await fetch(
-      `https://api.github.com/search/issues?q=author:rahulm2310+repo:${r.repo}+type:pr+is:open+sort:author-date-asc`
-    );
-    let mergedPrs = await fetch(
-      `https://api.github.com/search/issues?q=author:rahulm2310+repo:${r.repo}+type:pr+is:merged+sort:author-date-asc`
-    );
-    let openIssues = await fetch(
-      `https://api.github.com/search/issues?q=author:rahulm2310+repo:${r.repo}+type:issue 
-      +is:open+sort:author-date-asc`
-    );
-    let closedIssues = await fetch(
-      `https://api.github.com/search/issues?q=author:rahulm2310+repo:${r.repo}+type:issue
-      +is:closed+sort:author-date-asc`
-    );
-    openPrs = await openPrs.json();
-    mergedPrs = await mergedPrs.json();
-    openIssues = await openIssues.json();
-    closedIssues = await closedIssues.json();
-    r.openPrs = openPrs.items;
-    r.mergedPrs = mergedPrs.items;
-    r.openIssues = openIssues.items;
-    r.closedIssues = closedIssues.items;
-    // console.log(r.openPrs);
-    // console.log(r.mergedPrs);
-    // dataFetched = true;
-    updateUi();
-  });
+    // let openPrs = await fetch(
+    //   `https://api.github.com/search/issues?q=author:rahulm2310+repo:${r.repo}+type:pr+is:open+sort:author-date-asc`
+    // );
+    // let mergedPrs = await fetch(
+    //   `https://api.github.com/search/issues?q=author:rahulm2310+repo:${r.repo}+type:pr+is:merged+sort:author-date-asc`
+    // );
+    // let openIssues = await fetch(
+    //   `https://api.github.com/search/issues?q=author:rahulm2310+repo:${r.repo}+type:issue 
+    //   +is:open+sort:author-date-asc`
+    // );
+    // let closedIssues = await fetch(
+    //   `https://api.github.com/search/issues?q=author:rahulm2310+repo:${r.repo}+type:issue
+    //   +is:closed+sort:author-date-asc`
+    // );
 }
+
 
 const GITHUB_URL = 'https://github.com';
 
-function updateUi() {
-  let openSource = repos.map((r) => {
-    return `<div class="box">
-  <div class="left">
-    <img
-      src="${r.image}"
-      alt="project-image"
-    />
-    <h5>${r.title}</h5>
-  </div>
-  <div class="right">
-    <div class="issues">
-      <div class="header">
-        <h5>Issues Reported</h5>
-        <div class="tabs">
-        <h6 class="issue-closed tab active">Closed</h6>
-          <h6 class="issue-open tab ">Open</h6>
-        </div>
-      </div>
-      <div class="issue-list">
-      ${
-        r.closedIssues.length > 0
-          ? r.closedIssues
-              .map(
-                (pr) => `<div class="issue-item merged-item">
-  <i class="far fa-check-circle merged-icon"></i>
-  <div class="content">
-    <h6><a href='${GITHUB_URL}${pr.url.substring(28)}'>#${pr.number} : ${pr.title}</a></h6>
-    <small>${
-      new Date(pr.closed_at).getDate() +
-      ' ' +
-      months[new Date(pr.closed_at).getMonth()] +
-      ',' +
-      new Date(pr.closed_at).getFullYear()
-    }</small>
-  </div>
-</div>`
-              )
-              .join('')
-          : `<p>No closed issues found</p>`
-      }
-      </div>
-    </div>
-    <div class="issues">
-    <div class="header">
-      <h5>Pull Requests</h5>
-      <div class="tabs">
-      <h6 class="pr-merged tab active">Merged</h6>
-          <h6 class="pr-open tab">Open</h6>
-        </div>
-        </div>
-      <div class="issue-list">
-      ${
-        r.mergedPrs.length > 0
-          ? r.mergedPrs
-              .map(
-                (pr) => `<div class="issue-item merged-item">
-                <div class='icon-wrapper open-icon'>
-                <img src='./img/merge-icon.png'/>
-              </div>
-  <div class="content">
-    <h6><a href='${GITHUB_URL}${pr.url.substring(28)}'>#${pr.number} : ${pr.title}</a></h6>
-    <small>${
-      new Date(pr.closed_at).getDate() +
-      ' ' +
-      months[new Date(pr.closed_at).getMonth()] +
-      ',' +
-      new Date(pr.closed_at).getFullYear()
-    }</small>
-  </div>
-</div>`
-              )
-              .join('')
-          : `<p>No merged pull requests found</p>`
-      }
-      </div>
-    </div>
-  </div>
-</div>`;
-  });
+function updateUi(r) {
+    let openSource = `<div class="box">
+                <div class="issue-box">
+                  <div class="header">
+                    <h5>Issues Reported</h5>
+                    </div>
+                    <div class="issue-list">
+                    ${
+                      r.issues.length > 0
+                        ? r.issues
+                            .map(
+                              (pr) => {
+                                const repoUrl = pr.repository_url.substring(29);
+                                const image = repoUrl.includes('processing')?"processing.jpg":repoUrl.includes('joplin')?"joplin.jpg":repoUrl.includes('anitab-org')?"anitab.png":"ztm.png";
+                                return `<div class="${pr.state=="open"?"issue-item open-item":"issue-item merged-item"}">
+                <i class="${pr.state=="open"?"fas fa-exclamation-circle open-icon":"far fa-check-circle merged-icon"}"></i>
+                <div class="content">
+                  <div class="content-left">
+                  <h6><a href='${GITHUB_URL}${pr.url.substring(28)}'>#${pr.number} : ${pr.title}</a></h6>
+                  <small>${
+                    new Date(pr.created_at).getDate() +
+                    ' ' +
+                    months[new Date(pr.created_at).getMonth()] +
+                    ',' +
+                    new Date(pr.created_at).getFullYear()
+                  }</small>
+                  </div>
+                  <div class="content-right">
+                    <img src="./img/projects/${image}" />
+                  </div>
+                </div>
+              </div>`
+                })
+                            .join('')
+                        : `<p>Fetching issues...</p>`
+                    }
+                    </div>
+                    
+       </div>
 
-  $('.open-source-list').html(openSource.join(''));
+    <div class="pr-box">
+        <div class="header">
+          <h5>Pull Requests</h5>
+          </div>
+    <div class="issue-list">
+      ${
+        r.prs.length > 0
+          ? r.prs
+              .map(
+                (pr) => {
+                  const repoUrl = pr.repository_url.substring(29);
+                   const image = repoUrl.includes('processing')?"processing.jpg":repoUrl.includes('joplin')?"joplin.jpg":repoUrl.includes('anitab-org')?"anitab.png":"ztm.png";
+                  return `<div class="${pr.state=="open"?"issue-item open-item":"issue-item merged-item"}">
+                            <div class='icon-wrapper open-icon'>
+                                  <img src="${pr.state=="open"?"./img/open-icon.png":"./img/merge-icon.png"}" />
+                                </div>
+                              <div class="content">
+                              <div class="content-left">
+                                <h6><a href='${GITHUB_URL}${pr.url.substring(28)}'>#${pr.number} : ${pr.title}</a></h6>
+                                <small>${
+                                  new Date(pr.created_at).getDate() +
+                                  ' ' +
+                                  months[new Date(pr.created_at).getMonth()] +
+                                  ',' +
+                                  new Date(pr.created_at).getFullYear()
+                                }</small>
+                                </div>
+                                <div class="content-right">
+                                <img src="./img/projects/${image}" />
+                              </div>
+                              </div>
+                          </div>`
+                              })
+              .join('')
+          : `<p>Fetching pull requests...</p>`
+      }
+          </div>
+       </div>
+    </div>`
+
+  // console.log(openSource);
+  $('.open-source-list').html(openSource);
 }
-
-$(document).on('click', '.issue-open', function () {
-  $(this).addClass('active');
-  $(this).parent().children('.issue-closed').removeClass('active');
-  let index = repos.find(
-    (r) =>
-      r.title ==
-      $(this)
-        .parent()
-        .parent()
-        .parent()
-        .parent()
-        .parent()
-        .children()
-        .children('h5')
-        .text()
-  );
-  let list =
-    index.openIssues.length > 0
-      ? index.openIssues.map(
-          (pr) => `<div class="issue-item open-item">
-  <i class="fas fa-exclamation-circle open-icon"></i>
-  <div class="content">
-    <h6><a href='${GITHUB_URL}${pr.url.substring(28)}'>#${pr.number} : ${pr.title}</a></h6>
-    <small>${
-      new Date(pr.created_at).getDate() +
-      ' ' +
-      months[new Date(pr.created_at).getMonth()] +
-      ',' +
-      new Date(pr.created_at).getFullYear()
-    }</small>
-  </div>
-</div>`
-        )
-      : [`<p>No open issues found</p>`];
-  $(this)
-    .parent()
-    .parent()
-    .parent()
-    .children('.issue-list')
-    .html(list.join(''));
-});
-
-$(document).on('click', '.pr-open', function () {
-  $(this).addClass('active');
-  $(this).parent().children('.pr-merged').removeClass('active');
-  console.log('clickeddd');
-  let index = repos.find(
-    (r) =>
-      r.title ==
-      $(this)
-        .parent()
-        .parent()
-        .parent()
-        .parent()
-        .parent()
-        .children()
-        .children('h5')
-        .text()
-  );
-  let list =
-    index.openPrs.length > 0
-      ? index.openPrs.map(
-          (pr) => `<div class="issue-item open-item">
-          <div class='icon-wrapper open-icon'>
-          <img src='./img/open-icon.png'/>
-        </div>
-  <div class="content">
-    <h6><a href='${GITHUB_URL}${pr.url.substring(28)}'>#${pr.number} : ${pr.title}</a></h6>
-    <small>${
-      new Date(pr.created_at).getDate() +
-      ' ' +
-      months[new Date(pr.created_at).getMonth()] +
-      ',' +
-      new Date(pr.created_at).getFullYear()
-    }</small>
-  </div>
-</div>`
-        )
-      : [`<p>No open pull requests found</p>`];
-  // console.log($(this).parent().parent().parent().children('.issue-list'));
-  $(this)
-    .parent()
-    .parent()
-    .parent()
-    .children('.issue-list')
-    .html(list.join(''));
-});
-
-$(document).on('click', '.issue-closed', function () {
-  $(this).addClass('active');
-  $(this).parent().children('.issue-open').removeClass('active');
-  let index = repos.find(
-    (r) =>
-      r.title ==
-      $(this)
-        .parent()
-        .parent()
-        .parent()
-        .parent()
-        .parent()
-        .children()
-        .children('h5')
-        .text()
-  );
-  let list =
-    index.closedIssues.length > 0
-      ? index.closedIssues.map(
-          (pr) => `<div class="issue-item merged-item">
-  <i class="fas fa-check-circle merged-icon"></i>
-  <div class="content">
-    <h6><a href='${GITHUB_URL}${pr.url.substring(28)}'>#${pr.number} : ${pr.title}</a></h6>
-    <small>${
-      new Date(pr.closed_at).getDate() +
-      ' ' +
-      months[new Date(pr.closed_at).getMonth()] +
-      ',' +
-      new Date(pr.closed_at).getFullYear()
-    }</small>
-  </div>
-</div>`
-        )
-      : [`<p>No closed issues found</p>`];
-  $(this)
-    .parent()
-    .parent()
-    .parent()
-    .children('.issue-list')
-    .html(list.join(''));
-});
-
-$(document).on('click', '.pr-merged', function () {
-  $(this).addClass('active');
-  $(this).parent().children('.pr-open').removeClass('active');
-  $();
-  let index = repos.find(
-    (r) =>
-      r.title ==
-      $(this)
-        .parent()
-        .parent()
-        .parent()
-        .parent()
-        .parent()
-        .children()
-        .children('h5')
-        .text()
-  );
-  let list =
-    index.mergedPrs.length > 0
-      ? index.mergedPrs.map(
-          (pr) => `<div class="issue-item merged-item">
-          <div class='icon-wrapper'>
-          <img src='./img/merge-icon.png'/>
-        </div>
-          <div class="content">
-    <h6><a href='${GITHUB_URL}${pr.url.substring(28)}'>#${pr.number} : ${pr.title}</a></h6>
-    <small>${
-      new Date(pr.closed_at).getDate() +
-      ' ' +
-      months[new Date(pr.closed_at).getMonth()] +
-      ',' +
-      new Date(pr.closed_at).getFullYear()
-    }</small>
-  </div>
-</div>`
-        )
-      : [`<p>No merged pull requests found</p>`];
-  // console.log($(this).parent().parent().parent().children('.issue-list'));
-  $(this)
-    .parent()
-    .parent()
-    .parent()
-    .children('.issue-list')
-    .html(list.join(''));
-});
