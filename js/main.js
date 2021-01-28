@@ -248,7 +248,7 @@ let dataFetched = false;
 //     prs:[]
 //   },
 // ];
-console.log(location.pathname);
+// console.log(location.pathname);
 
 const fetchData = async()=>{
   let prs = await fetch(
@@ -267,7 +267,7 @@ const fetchData = async()=>{
   updateUi({issues,prs});
 }
 
-if (location.pathname == '/work.html') {
+if (location.pathname.substring(10) == '/work.html') {
   fetchData();
 
 
